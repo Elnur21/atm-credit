@@ -8,6 +8,8 @@ let user = {
   credit: false,
   creditMoney: 0,
 };
+let transactions = "";
+let counter = 1; // for transactions
 alert("Log in");
 do {
   let userName = prompt("Enter your name: ");
@@ -25,40 +27,82 @@ do {
       ).toLowerCase();
     }
     while (cash === "yes") {
-      if (user.money === 0) {
-        credit = prompt(
-          `Your current money: ${user.money}
-          Do you want credit?(yes/no):`
+      let userConfirm = prompt(`Your current money: ${user.money}. 
+      Do you want to cash out?(yes/no)`).toLowerCase();
+      while (userConfirm !== "yes" || userConfirm !== "no") {
+        if (userConfirm === "yes" || userConfirm === "no") {
+          break;
+        }
+        userConfirm = prompt(
+          "Do you want to cash out? (yes, no):"
         ).toLowerCase();
-        while (credit !== "yes" || credit !== "no") {
-          if (credit === "yes" || credit === "no") {
+      }
+      if (userConfirm === "yes") {
+        if (user.money === 0) {
+          credit = prompt(
+            `Your current money: ${user.money}
+              Do you want credit?(yes/no):`
+          ).toLowerCase();
+          while (credit !== "yes" || credit !== "no") {
+            if (credit === "yes" || credit === "no") {
+              break;
+            }
+            credit = prompt("Write yes or no (yes, no):").toLowerCase();
+          }
+          if (credit === "yes") {
+            if (user.credit === true) {
+              alert("You already have credit.");
+            } else {
+              user.credit = true;
+              user.creditMoney = (user.income * 45) / 100;
+              user.money += user.creditMoney;
+              transactions += `${counter}. Mebleg: ${user.creditMoney} AZN  ${Date.now} (Kredit daxil edilib) \n`;
+              counter++;
+            }
+            continue;
+          } else {
+            alert("You have no money, see you next month.");
+            user.inATM = false;
             break;
           }
-          credit = prompt("Write yes or no (yes, no):").toLowerCase();
         }
-        if (credit === "yes") {
-          if (user.credit === true) {
-            alert("You already have credit.");
-          } else {
-            user.credit = true;
-            user.creditMoney = (user.income * 45) / 100;
-            user.money += user.creditMoney;
-          }
-          continue;
-        } else {
-          continue;
-        }
-      }
-      let cashOut = Number(
-        prompt(`Your current money: ${user.money}. 
-      How much money do you want to cash out: `)
-      );
-      if (cashOut > user.money) {
-        cashOut = Number(
+        let cashOut = Number(
           prompt(`Your current money: ${user.money}. 
-          write a number equal or less than your money: `)
+          How much money do you want to cash out: `)
         );
-        continue;
+        if (cashOut > user.money) {
+          credit = prompt(
+            `Your current money: ${user.money}
+                Do you want credit?(yes/no):`
+          ).toLowerCase();
+          while (credit !== "yes" || credit !== "no") {
+            if (credit === "yes" || credit === "no") {
+              break;
+            }
+            credit = prompt("Write yes or no (yes, no):").toLowerCase();
+          }
+          if (credit === "yes") {
+            if (user.credit === true) {
+              alert("You already have credit.");
+            } else {
+              user.credit = true;
+              user.creditMoney = (user.income * 45) / 100;
+              user.money += user.creditMoney;
+              transactions += `${counter}. Mebleg: ${user.creditMoney} AZN  ${Date.now} (Kredit daxil edilib) \n`;
+              counter++;
+            }
+            continue;
+          } else {
+            alert("Let's cash out.");
+          }
+        } else {
+          user.money -= cashOut;
+          transactions += `${counter}. Mebleg: ${cashOut} AZN  ${Date.now} (Pul cixarilib) \n`;
+          counter++;
+          continue
+        }
+      } else {
+        alert(transactions);
       }
     }
   } else {
