@@ -1,0 +1,23 @@
+1.Istifadeci once qeydiyyatdan kecmelidir.
+-Qeydiyyat vaxti şifrə və maashini qeyd etmelidir.
+
+
+2.Daha sonra istifadeciden daxil olmaq uchun şifrəsini istəmək lazımdır
+a)Eger 3 dəfədən çox səhf etsə.Bloklanma mesajı göstərilib.Proses dayanmalıdır
+b)Eger duz yazsa,istifadeciden kredit ödənişini(K) yoxsa pul çıxmaq istəməsini(P) 
+soruşmaq lazımdır.
+-Eger kredit ödənişi edirsə balansdan çıxmaq lazımdır,yeniden davam edib etmemesini sorushuruq
+-Eger pul çıxarırsa cixib.Ve her defesinde davam etmesini sorushuruq
+-Əgər balans 0 olsa kredit təklifi verməliyik.
+-Eyni zamanda cixaratmaq istediyi mebleg balansdan cox olsa kredit teklifi olmalidir
+-Teklifi qebul etse 
+Maashin 45%-ni vermek lazimdir.Amma 45%-dende 2% komisya tutmaq lazimdir
+-Istifadeciden yeniden hansi emeliyyati sorushmaq lazimdir.
+-Eger kredit verdiyi pulda bitse ve krediti tam odemese ikinci kredit teklifi olmamalidir.
+
+Qeyd:Istifadeci hec bir prosesde davam etmek istemese.Tranzaksiya datalarini 
+isteyib istemediyini sorushmaq lazimdir.Istese prosesi dayandirib ekrana,
+1.Mebleg:200 Azn  21.05.2023 10:59:40  (Pul cixarilib)
+2.Mebleg:300 Azn  21.05.2023 11:59:40  (Pul cixarilib)
+3.Mebleg 3000Azn  21.05.2023 12:00:00  (Kredit daxil edilib)
+4.Mebleg 400Azn   21.05.2023 12:05:00  (Kredit odenishi olub)
