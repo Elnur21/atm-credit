@@ -112,7 +112,27 @@ do {
       }
     }
     while (cash === "no") {
-        
+      let userConfirm = prompt(`Your current money: ${user.money}. 
+      Do you want to get credit?(yes/no)`).toLowerCase();
+      while (userConfirm !== "yes" || userConfirm !== "no") {
+        if (userConfirm === "yes" || userConfirm === "no") {
+          break;
+        }
+        userConfirm = prompt(
+          "Do you want to get credit? (yes, no):"
+        ).toLowerCase();
+      }
+      if (userConfirm === "yes") {
+        if (user.credit === true) {
+          alert("You already have credit.");
+          
+        }
+        continue;
+      } else {
+        alert(transactions);
+        user.inATM = false;
+        break;
+      }
     }
   } else {
     let register = "";
