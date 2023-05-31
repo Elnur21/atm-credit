@@ -56,7 +56,9 @@ do {
               user.credit = true;
               user.creditMoney = (user.income * 45) / 100;
               user.money += user.creditMoney;
-              transactions += `${counter}. Mebleg: ${user.creditMoney} AZN  ${Date.now} (Kredit daxil edilib) \n`;
+              transactions += `${counter}. Mebleg: ${
+                user.creditMoney
+              } AZN  ${Date()} (Kredit daxil edilib) \n`;
               counter++;
             }
             continue;
@@ -88,7 +90,9 @@ do {
               user.credit = true;
               user.creditMoney = (user.income * 45) / 100;
               user.money += user.creditMoney;
-              transactions += `${counter}. Mebleg: ${user.creditMoney} AZN  ${Date.now} (Kredit daxil edilib) \n`;
+              transactions += `${counter}. Mebleg: ${
+                user.creditMoney
+              } AZN  ${Date()} (Kredit daxil edilib) \n`;
               counter++;
             }
             continue;
@@ -97,13 +101,18 @@ do {
           }
         } else {
           user.money -= cashOut;
-          transactions += `${counter}. Mebleg: ${cashOut} AZN  ${Date.now} (Pul cixarilib) \n`;
+          transactions += `${counter}. Mebleg: ${cashOut} AZN  ${Date()} (Pul cixarilib) \n`;
           counter++;
-          continue
         }
+        continue;
       } else {
         alert(transactions);
+        user.inATM = false;
+        break;
       }
+    }
+    while (cash === "no") {
+        
     }
   } else {
     let register = "";
