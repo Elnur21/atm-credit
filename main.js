@@ -27,96 +27,99 @@ do {
           "Write yes or no (yes-cash out, no-pay credit):"
         ).toLowerCase();
       }
-      while (cash === "yes") {
-        let userConfirm = prompt(`Your current money: ${user.money}. 
+      if (cash === "yes") {
+        while (cash === "yes") {
+          let userConfirm = prompt(`Your current money: ${user.money}. 
         Do you want to cash out?(yes/no)`).toLowerCase();
-        while (userConfirm !== "yes" || userConfirm !== "no") {
-          if (userConfirm === "yes" || userConfirm === "no") {
-            break;
-          }
-          userConfirm = prompt(
-            "Do you want to cash out? (yes, no):"
-          ).toLowerCase();
-        }
-        if (userConfirm === "yes") {
-          if (user.money === 0) {
-            credit = prompt(
-              `Your current money: ${user.money}
-              Do you want credit?(yes/no):`
-            ).toLowerCase();
-            while (credit !== "yes" || credit !== "no") {
-              if (credit === "yes" || credit === "no") {
-                break;
-              }
-              credit = prompt("Write yes or no (yes, no):").toLowerCase();
-            }
-            if (credit === "yes") {
-              if (user.credit === true) {
-                alert(
-                  `You already have credit: ${user.creditMoney} AZN. Pay it then take new credit.`
-                );
-                break;
-              } else {
-                user.credit = true;
-                user.creditMoney = (user.income * 45) / 100;
-                user.money += user.creditMoney;
-                transactions += `${counter}. Mebleg: ${
-                  user.creditMoney
-                } AZN  ${Date()} (Kredit daxil edilib) \n`;
-                counter++;
-                continue;
-              }
-            } else {
-              alert("You have no money, see you next month.");
-              user.inATM = false;
+          while (userConfirm !== "yes" || userConfirm !== "no") {
+            if (userConfirm === "yes" || userConfirm === "no") {
               break;
             }
-          }
-          let cashOut = Number(
-            prompt(`Your current money: ${user.money}. 
-            How much money do you want to cash out: `)
-          );
-          if (cashOut > user.money) {
-            credit = prompt(
-              `Your current money: ${user.money}
-                Do you want credit?(yes/no):`
+            userConfirm = prompt(
+              "Do you want to cash out? (yes, no):"
             ).toLowerCase();
-            while (credit !== "yes" || credit !== "no") {
-              if (credit === "yes" || credit === "no") {
+          }
+          if (userConfirm === "yes") {
+            if (user.money === 0) {
+              credit = prompt(
+                `Your current money: ${user.money}
+              Do you want credit?(yes/no):`
+              ).toLowerCase();
+              while (credit !== "yes" || credit !== "no") {
+                if (credit === "yes" || credit === "no") {
+                  break;
+                }
+                credit = prompt("Write yes or no (yes, no):").toLowerCase();
+              }
+              if (credit === "yes") {
+                if (user.credit === true) {
+                  alert(
+                    `You already have credit: ${user.creditMoney} AZN. Pay it then take new credit.`
+                  );
+                  break;
+                } else {
+                  user.credit = true;
+                  user.creditMoney = (user.income * 45) / 100;
+                  user.money += (user.creditMoney-0.02*user.creditMoney);
+                  transactions += `${counter}. Mebleg: ${
+                    user.creditMoney
+                  } AZN  ${Date()} (Kredit daxil edilib) \n`;
+                  counter++;
+                  continue;
+                }
+              } else {
+                alert("You have no money, see you next month.");
+                user.inATM = false;
                 break;
               }
-              credit = prompt("Write yes or no (yes, no):").toLowerCase();
             }
-            if (credit === "yes") {
-              if (user.credit === true) {
-                alert(
-                  `You already have credit: ${user.creditMoney} AZN. Pay it then take new credit.`
-                );
-                break;
+            let cashOut = Number(
+              prompt(`Your current money: ${user.money}. 
+            How much money do you want to cash out: `)
+            );
+            if (cashOut > user.money) {
+              credit = prompt(
+                `Your current money: ${user.money}
+                Do you want credit?(yes/no):`
+              ).toLowerCase();
+              while (credit !== "yes" || credit !== "no") {
+                if (credit === "yes" || credit === "no") {
+                  break;
+                }
+                credit = prompt("Write yes or no (yes, no):").toLowerCase();
+              }
+              if (credit === "yes") {
+                if (user.credit === true) {
+                  alert(
+                    `You already have credit: ${user.creditMoney} AZN. Pay it then take new credit.`
+                  );
+                  break;
+                } else {
+                  user.credit = true;
+                  user.creditMoney = (user.income * 45) / 100;
+                  user.money += user.creditMoney;
+                  transactions += `${counter}. Mebleg: ${
+                    user.creditMoney
+                  } AZN  ${Date()} (Kredit daxil edilib) \n`;
+                  counter++;
+                  continue;
+                }
               } else {
-                user.credit = true;
-                user.creditMoney = (user.income * 45) / 100;
-                user.money += user.creditMoney;
-                transactions += `${counter}. Mebleg: ${
-                  user.creditMoney
-                } AZN  ${Date()} (Kredit daxil edilib) \n`;
-                counter++;
-                continue;
+                alert("Let's cash out.");
               }
             } else {
-              alert("Let's cash out.");
+              user.money -= cashOut;
+              transactions += `${counter}. Mebleg: ${cashOut} AZN  ${Date()} (Pul cixarilib) \n`;
+              counter++;
+              break;
             }
           } else {
-            user.money -= cashOut;
-            transactions += `${counter}. Mebleg: ${cashOut} AZN  ${Date()} (Pul cixarilib) \n`;
-            counter++;
+            alert(transactions);
+            user.inATM = false;
+            break;
           }
-          continue;
-        } else {
-          alert(transactions);
-          user.inATM = false;
-          break;
         }
+        continue;
       }
       if (user.creditMoney === 0) {
         alert("You have no credit");
@@ -154,7 +157,7 @@ do {
                 transactions += `${counter}. Mebleg: ${payMoney} AZN  ${Date()} (Kredit odenishi olub) \n`;
                 counter++;
                 alert("You have paid successfully.");
-                continue;
+                break;
               }
             }
           } else {
