@@ -60,7 +60,7 @@ do {
                 } else {
                   user.credit = true;
                   user.creditMoney = (user.income * 45) / 100;
-                  user.money += (user.creditMoney-0.02*user.creditMoney);
+                  user.money += user.creditMoney - 0.02 * user.creditMoney;
                   transactions += `${counter}. Mebleg: ${
                     user.creditMoney
                   } AZN  ${Date()} (Kredit daxil edilib) \n`;
@@ -97,7 +97,7 @@ do {
                 } else {
                   user.credit = true;
                   user.creditMoney = (user.income * 45) / 100;
-                  user.money += user.creditMoney;
+                  user.money += user.creditMoney - 0.02 * user.creditMoney;
                   transactions += `${counter}. Mebleg: ${
                     user.creditMoney
                   } AZN  ${Date()} (Kredit daxil edilib) \n`;
@@ -157,6 +157,9 @@ do {
                 transactions += `${counter}. Mebleg: ${payMoney} AZN  ${Date()} (Kredit odenishi olub) \n`;
                 counter++;
                 alert("You have paid successfully.");
+                if (user.creditMoney === 0) {
+                  user.credit = false;
+                }
                 break;
               }
             }
