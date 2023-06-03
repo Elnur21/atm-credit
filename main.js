@@ -59,7 +59,7 @@ do {
                   break;
                 } else {
                   user.credit = true;
-                  user.creditMoney = (user.income * 45) / 100;
+                  user.creditMoney = ((user.income * 45) / 100) * 12;
                   user.money += user.creditMoney - 0.02 * user.creditMoney;
                   transactions += `${counter}. Mebleg: ${
                     user.creditMoney
@@ -96,7 +96,7 @@ do {
                   break;
                 } else {
                   user.credit = true;
-                  user.creditMoney = (user.income * 45) / 100;
+                  user.creditMoney = ((user.income * 45) / 100) * 12;
                   user.money += user.creditMoney - 0.02 * user.creditMoney;
                   transactions += `${counter}. Mebleg: ${
                     user.creditMoney
