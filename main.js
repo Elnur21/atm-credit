@@ -22,14 +22,14 @@ do {
               Cash out or pay credit? (yes-cash out, no-pay credit):
               `);
           if (cash) {
-            while (cash === "yes") {
+            while (cash) {
               let userConfirm = confirm(`Your current money: ${user.money}. 
-        Do you want to cash out?(yes/no)`);
+              Do you want to cash out?(yes/no)`);
               if (userConfirm) {
                 if (user.money === 0) {
                   credit = confirm(
                     `Your current money: ${user.money}
-                Do you want credit?(yes/no):`
+                  Do you want credit?(yes/no):`
                   )
                   if (credit) {
                     if (user.credit === true) {
@@ -55,7 +55,7 @@ do {
                 }
                 let cashOut = Number(
                   prompt(`Your current money: ${user.money}. 
-            How much money do you want to cash out: `)
+                  How much money do you want to cash out: `)
                 );
                 while (!cashOut || cashOut == "") {
                   cashOut = Number(prompt(`Your current money: ${user.money}. 
@@ -99,11 +99,12 @@ do {
             }
             continue;
           }
-          if (user.creditMoney === 0) {
-            alert("You have no credit");
-            continue;
-          } else {
-            while (cash === "no") {
+          else {
+            if (user.creditMoney === 0) {
+              alert("You have no credit");
+              continue;
+            } 
+            while (!cash) {
               let userConfirm = confirm(`Your current money: ${user.money}. 
           Your current credit: ${user.creditMoney}.
           Do you want to pay credit?(yes/no)`)
